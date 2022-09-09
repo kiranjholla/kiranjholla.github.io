@@ -1,13 +1,15 @@
 :root {
   /* Dimensions */
-  --header-height: 5rem;
-  --pane-radius: 0.625rem;
+  --page-header-height: 5rem;
   --pane-margin: 1.25rem;
 
   /* Colors */
-  --header-color: #412316;
-  --content-page-color: #eff0ef;
-  --content-pane-color: #eee1d5;
+  --header-bg-color: #412316;
+  --content-page-bg-color: #eff0ef;
+  --content-pane-bg-color: #eee1d5;
+  --pane-header-text-color: #915a2f;
+  --item-bottom-border-color: #ddb892;
+  --ingredients-font-color: #b08968;
 }
 
 * {
@@ -17,6 +19,7 @@
 .page-body {
   margin: 0;
   padding: 0;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .page-container {
@@ -29,28 +32,31 @@
 }
 
 .header {
-  height: var(--header-height);
-  background-color: var(--header-color);
+  height: var(--page-header-height);
+  background-color: var(--header-bg-color);
   margin: 0px;
 }
 
 .page-content {
-  background-color: var(--content-page-color);
-  height: calc(100vh - var(--header-height));
+  background-color: var(--content-page-bg-color);
+  /* height: calc(100vh - var(--page-header-height)); */
   padding: var(--pane-margin);
   display: grid;
   grid-template-columns: 1fr 1fr;
   row-gap: var(--pane-margin);
   column-gap: var(--pane-margin);
   grid-template-areas:
-    "items-pane name-pane"
-    "items-pane payments-pane"
-    "checkout-pane checkout-pane";
+    'items-pane name-pane'
+    'items-pane payments-pane'
+    'checkout-pane checkout-pane';
 }
 
 .content-pane {
-  background-color: var(--content-pane-color);
-  border-radius: var(--pane-radius);
+  background-color: var(--content-pane-bg-color);
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
 }
 
 .items-pane {
@@ -67,4 +73,44 @@
 
 .checkout-pane {
   grid-area: checkout-pane;
+}
+
+.pane-header {
+  text-transform: uppercase;
+  color: var(--pane-header-text-color);
+  padding: 1rem 0rem;
+}
+
+.items-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 7fr 1fr;
+  column-gap: 0.2rem;
+  border-bottom: 2px solid var(--item-bottom-border-color);
+  padding: 0.75rem 0rem;
+}
+
+.item-dtls {
+  line-height: 1.75rem;
+}
+
+.item:last-child {
+  border: 0;
+}
+
+.emphasize {
+  font-weight: bold;
+}
+
+.item-ingredients ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--ingredients-font-color);
 }
