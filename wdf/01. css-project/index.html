@@ -54,8 +54,28 @@
             </div>
           </div>
         </div>
-        <div id="name" class="content-pane name-pane"></div>
-        <div id="payments" class="content-pane payments-pane"></div>
+        <div id="name" class="content-pane name-pane">
+          <div id="name-header" class="pane-header">Name</div>
+          <div id="name-container" class="input-container">
+            <label id="name-label" class="input-label" for="name-input">Name for order</label>
+            <input id="name-input" type="text" class="input-control" />
+          </div>
+        </div>
+        <div id="payments" class="content-pane payments-pane">
+          <div id="payments-header" class="pane-header">Payments</div>
+          <div id="card-container" class="input-container">
+            <label id="card-label" class="input-label" for="name-input">Card number</label>
+            <input id="name-input" type="text" class="input-control" />
+          </div>
+          <div id="expiry-container" class="input-container">
+            <label id="expiry-label" class="input-label" for="expiry-input">Expiry date</label>
+            <input id="expiry-input" type="text" class="input-control short-input" />
+          </div>
+          <div id="cvv-container" class="input-container">
+            <label id="cvv-label" class="input-label" for="cvv-input">CVV</label>
+            <input id="cvv-input" type="text" class="input-control short-input" />
+          </div>
+        </div>
         <div id="checkout" class="checkout-pane"></div>
       </div>
     </div>

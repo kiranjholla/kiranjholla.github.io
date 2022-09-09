@@ -10,6 +10,7 @@
   --pane-header-text-color: #915a2f;
   --item-bottom-border-color: #ddb892;
   --ingredients-font-color: #b08968;
+  --input-border-color: #885a2d;
 }
 
 * {
@@ -78,7 +79,7 @@
 .pane-header {
   text-transform: uppercase;
   color: var(--pane-header-text-color);
-  padding: 1rem 0rem;
+  padding: 0.4rem 0rem;
 }
 
 .items-list {
@@ -113,4 +114,33 @@
   margin: 0;
   font-size: 0.85rem;
   color: var(--ingredients-font-color);
+}
+
+.input-container {
+  position: relative;
+}
+
+.input-container > .input-label {
+  display: block;
+  position: absolute;
+  color: var(--input-border-color);
+  background-color: var(--content-pane-bg-color);
+  font-size: 0.7rem;
+  left: 1.25rem;
+  top: 0.55rem;
+  padding: 0rem 0.35rem;;
+}
+
+.input-container > .input-control {
+  display: block;
+  border-radius: 1.25rem;
+  padding: 0.65rem 0.6rem;
+  margin: 1rem 0rem;
+  border: 2px solid var(--input-border-color);
+  background-color: transparent;
+  width: 100%;
+}
+
+.input-container > .input-control.short-input {
+  width: 50%;
 }
