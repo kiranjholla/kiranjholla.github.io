@@ -1,10 +1,13 @@
 :root {
   /* Dimensions */
   --header-height: 5rem;
+  --pane-radius: 0.625rem;
+  --pane-margin: 1.25rem;
 
   /* Colors */
   --header-color: #412316;
   --content-page-color: #eff0ef;
+  --content-pane-color: #eee1d5;
 }
 
 * {
@@ -34,6 +37,34 @@
 .page-content {
   background-color: var(--content-page-color);
   height: calc(100vh - var(--header-height));
+  padding: var(--pane-margin);
   display: grid;
   grid-template-columns: 1fr 1fr;
+  row-gap: var(--pane-margin);
+  column-gap: var(--pane-margin);
+  grid-template-areas:
+    "items-pane name-pane"
+    "items-pane payments-pane"
+    "checkout-pane checkout-pane";
+}
+
+.content-pane {
+  background-color: var(--content-pane-color);
+  border-radius: var(--pane-radius);
+}
+
+.items-pane {
+  grid-area: items-pane;
+}
+
+.name-pane {
+  grid-area: name-pane;
+}
+
+.payments-pane {
+  grid-area: payments-pane;
+}
+
+.checkout-pane {
+  grid-area: checkout-pane;
 }
