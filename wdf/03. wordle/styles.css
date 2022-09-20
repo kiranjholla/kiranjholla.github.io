@@ -1,0 +1,14 @@
+
+.game-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin: auto;
+  width: 50%;
+}
+
+.char-block {
+  width: 4.25rem;
+  height: 4.25rem;
+  border: 3px solid #eeeeee;
+  margin: 0.15rem;
+}
