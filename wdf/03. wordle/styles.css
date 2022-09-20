@@ -1,14 +1,38 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --box-width: 4.25rem;
+  --box-margin: 0.15rem;
+  --box-border: 0.1875rem;
+}
+
+.page-header {
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-variant: small-caps;
+  font-weight: bolder;
+  font-size: 32px;
+  height: var(--box-width);
+  margin: var(--box-width);
+  border-bottom: 3px solid brown;
+}
+
+.page-content {
+  display: flex;
+  justify-content: space-around;
+}
 
 .game-block {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  margin: auto;
-  width: 50%;
+  width: calc((var(--box-width) + var(--box-margin) + var(--box-margin)) * 5);
 }
 
 .char-block {
-  width: 4.25rem;
-  height: 4.25rem;
-  border: 3px solid #eeeeee;
-  margin: 0.15rem;
+  width: var(--box-width);
+  height: var(--box-width);
+  border: var(--box-border) solid #eeeeee;
+  margin: var(--box-margin);
 }
