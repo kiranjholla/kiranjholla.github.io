@@ -36,11 +36,39 @@ function showMessage(message) {
   }, 3000);
 }
 
+function markCharPositions() {}
+
 function validateEnteredWord() {
   let word = '';
   for (let i = 1; i < 6; i++) {
     word = `${word}${document.getElementById(`r${activeRow}c${i}`).innerText}`;
   }
+
+  fetch('https://words.dev-apis.com/validate-word', {
+    method: 'POST',
+    body: JSON.stringify({ word }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(response => {
+      if (!response.ok) {
+        return Promise.reject(response.statusText);
+      } else {
+        return response.json();
+      }
+    })
+    .then(value => {
+      if (value.validWord) {
+        markCharPositions();
+      } else {
+        showMessage('Not a valid word!');
+      }
+    })
+    .catch(error => {
+      showMessage('There was an error!');
+      console.error(error);
+    });
 }
 
 document.addEventListener('keyup', handleKeyup);
