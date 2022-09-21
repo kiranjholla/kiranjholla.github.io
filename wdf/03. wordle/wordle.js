@@ -6,12 +6,10 @@ const allowedKeys = ['Backspace', 'Enter'];
 const messageEl = document.getElementById('message-content');
 
 function handleKeyup(event) {
-  if (!/^[a-zA-Z]$/.test(event.key) && !allowedKeys.includes(event.code)) {
-    event.preventDefault();
-  } else {
+  if ((/^[a-zA-Z]$/.test(event.key) || allowedKeys.includes(event.code)) && activeRow <= 6) {
     switch (event.code) {
       case 'Backspace':
-        if (activeColumn > 0) {
+        if (activeColumn > 1) {
           --activeColumn;
           document.getElementById(`r${activeRow}c${activeColumn}-front`).innerText = '';
           document.getElementById(`r${activeRow}c${activeColumn}-back`).innerText = '';
@@ -45,6 +43,8 @@ function markCharPositions() {
     document.getElementById(`r${activeRow}c${i}-front`).classList.add('flip');
     document.getElementById(`r${activeRow}c${i}-back`).classList.add('flip');
   }
+  activeRow++;
+  activeColumn = 1;
 }
 
 function validateEnteredWord() {
