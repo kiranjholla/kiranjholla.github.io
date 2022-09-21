@@ -12,7 +12,9 @@ function handleKeyup(event) {
     switch (event.code) {
       case 'Backspace':
         if (activeColumn > 0) {
-          document.getElementById(`r${activeRow}c${--activeColumn}`).innerText = '';
+          --activeColumn;
+          document.getElementById(`r${activeRow}c${activeColumn}-front`).innerText = '';
+          document.getElementById(`r${activeRow}c${activeColumn}-back`).innerText = '';
         }
         break;
       case 'Enter':
@@ -22,7 +24,9 @@ function handleKeyup(event) {
         break;
       default:
         if (activeColumn < 6) {
-          document.getElementById(`r${activeRow}c${activeColumn++}`).innerText = event.key.toUpperCase();
+          document.getElementById(`r${activeRow}c${activeColumn}-front`).innerText = event.key;
+          document.getElementById(`r${activeRow}c${activeColumn}-back`).innerText = event.key;
+          activeColumn++;
         }
     }
   }
@@ -36,12 +40,17 @@ function showMessage(message) {
   }, 3000);
 }
 
-function markCharPositions() {}
+function markCharPositions() {
+  for (let i = 1; i < 6; i++) {
+    document.getElementById(`r${activeRow}c${i}-front`).classList.add('flip');
+    document.getElementById(`r${activeRow}c${i}-back`).classList.add('flip');
+  }
+}
 
 function validateEnteredWord() {
   let word = '';
   for (let i = 1; i < 6; i++) {
-    word = `${word}${document.getElementById(`r${activeRow}c${i}`).innerText}`;
+    word = `${word}${document.getElementById(`r${activeRow}c${i}-front`).innerText}`;
   }
 
   fetch('https://words.dev-apis.com/validate-word', {

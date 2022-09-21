@@ -103,12 +103,69 @@
 .char-block {
   width: var(--box-width);
   height: var(--box-width);
-  border: var(--box-border) solid #eeeeee;
   margin: var(--box-margin);
+  position: relative;
+}
+
+.front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 3.5rem;
   font-weight: bold;
+  transition: transform ease-in-out 600ms;
+  text-transform: uppercase;
+  transform: rotateX(0deg);
+  backface-visibility: hidden;
+  border: var(--box-border) solid #eeeeee;
+}
+
+.back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 3.5rem;
+  font-weight: bold;
+  transition: transform ease-in-out 600ms;
+  text-transform: uppercase;
+  transform: rotateX(180deg);
+  backface-visibility: hidden;
+  color: #ffffff;
+  border: var(--box-border) solid;
+}
+
+.front.flip {
+  transform: rotateX(180deg);
+}
+
+.back.flip {
+  transform: rotateX(0deg);
+  transform: translateY(calc(0 - var(--box-width)));
+}
+
+.green {
+  background-color: #6aaa64;
+  border-color: #6aaa64;
+}
+
+.yellow {
+  background-color: #c9b458;
+  border-color: #c9b458;
+}
+
+.grey {
+  background-color: #787c7e;
+  border-color: #787c7e;
 }
