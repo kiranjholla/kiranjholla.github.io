@@ -75,4 +75,10 @@
   height: var(--box-width);
   border: var(--box-border) solid #eeeeee;
   margin: var(--box-margin);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 3.5rem;
+  font-weight: bold;
 }
