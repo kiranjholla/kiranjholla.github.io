@@ -3,6 +3,8 @@ let activeColumn = 1;
 
 const allowedKeys = ['Backspace', 'Enter'];
 
+const messageEl = document.getElementById('message-content');
+
 function handleKeyup(event) {
   if (!/^[a-zA-Z]$/.test(event.key) && !allowedKeys.includes(event.code)) {
     event.preventDefault();
@@ -24,6 +26,14 @@ function handleKeyup(event) {
         }
     }
   }
+}
+
+function showMessage(message) {
+  messageEl.innerText = message;
+  messageEl.classList.remove('hidden');
+  setTimeout(function () {
+    messageEl.classList.add('hidden');
+  }, 3000);
 }
 
 function validateEnteredWord() {
