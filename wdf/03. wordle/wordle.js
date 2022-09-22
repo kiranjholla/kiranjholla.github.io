@@ -125,17 +125,17 @@ function markCharPositions(word) {
   }
 
   let promiseChain = Promise.resolve(activeRow);
-  for (let i = 1; i < 6; i++) {
-    promiseChain = promiseChain.then(
-      row =>
-        new Promise(resolve => {
+  promiseChain = promiseChain.then(
+    row =>
+      new Promise(resolve => {
+        for (let i = 1; i < 6; i++) {
           document.getElementById(`r${row}c${i}-front`).classList.add('flip');
           document.getElementById(`r${row}c${i}-back`).classList.add('flip');
           document.getElementById(`r${row}c${i}-back`).classList.add(positionLabels[i - 1]);
-          setTimeout(() => resolve(row), 450);
-        })
-    );
-  }
+        }
+        setTimeout(() => resolve(row), 500);
+      })
+  );
 
   if (correctChars < 5) {
     activeRow++;
@@ -145,15 +145,15 @@ function markCharPositions(word) {
     }
   } else {
     activeRow = 7;
-    for (let i = 1; i < 6; i++) {
-      promiseChain = promiseChain.then(
-        row =>
-          new Promise(resolve => {
+    promiseChain = promiseChain.then(
+      row =>
+        new Promise(resolve => {
+          for (let i = 1; i < 6; i++) {
             document.getElementById(`r${row}c${i}`).classList.add('victory-dance');
-            setTimeout(() => resolve(row), 100);
-          })
-      );
-    }
+          }
+          setTimeout(() => resolve(row), 500);
+        })
+    );
     promiseChain.then(() => showMessage('Congratulations!'));
   }
 }

@@ -168,7 +168,6 @@
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 3.5rem;
   font-weight: bold;
-  transition: transform ease-in-out 400ms;
   text-transform: uppercase;
   transform: rotateX(180deg);
   backface-visibility: hidden;
@@ -177,11 +176,24 @@
 }
 
 .front.flip {
-  transform: rotateX(180deg);
+  animation: flip-out 400ms ease-in-out;
+  animation-fill-mode: forwards;
 }
 
 .back.flip {
-  transform: rotateX(0deg);
+  animation: flip-in 400ms ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes flip-in {
+  to {
+    transform: rotateX(0deg);
+  }
+}
+@keyframes flip-out {
+  to {
+    transform: rotateX(180deg);
+  }
 }
 
 .green {
