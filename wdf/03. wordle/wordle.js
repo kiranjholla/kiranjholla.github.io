@@ -4,6 +4,7 @@ let activeColumn = 1;
 const allowedKeys = ['Backspace', 'Enter'];
 
 const messageEl = document.getElementById('message-content');
+const spinnerEl = document.getElementById('spinner');
 
 function handleKeyup(event) {
   if ((/^[a-zA-Z]$/.test(event.key) || allowedKeys.includes(event.code)) && activeRow <= 6) {
@@ -53,6 +54,7 @@ function validateEnteredWord() {
     word = `${word}${document.getElementById(`r${activeRow}c${i}-front`).innerText}`;
   }
 
+  startSpinner();
   fetch('https://words.dev-apis.com/validate-word', {
     method: 'POST',
     body: JSON.stringify({ word }),
@@ -68,6 +70,7 @@ function validateEnteredWord() {
       }
     })
     .then(value => {
+      stopSpinner();
       if (value.validWord) {
         markCharPositions();
       } else {
@@ -75,9 +78,16 @@ function validateEnteredWord() {
       }
     })
     .catch(error => {
+      stopSpinner();
       showMessage('There was an error!');
       console.error(error);
     });
 }
 
-document.addEventListener('keyup', handleKeyup);
+function startSpinner() {
+  spinnerEl.classList.add('spinning');
+}
+
+function stopSpinner() {
+  spinnerEl.classList.remove('spinning');
+}

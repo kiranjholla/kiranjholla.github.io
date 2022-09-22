@@ -94,6 +94,35 @@
   opacity: 1;
 }
 
+.spinner-container {
+  position: absolute;
+  z-index: 2000;
+}
+
+.spinner {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  opacity: 0;
+  width: 11rem;
+  height: 11rem;
+  padding-bottom: 0.242rem;
+  padding-left: 0.11rem;
+}
+
+.spinner.spinning {
+  opacity: 0.5;
+  animation: spinner 2s linear infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .game-block {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
