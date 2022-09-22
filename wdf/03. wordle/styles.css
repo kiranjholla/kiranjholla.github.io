@@ -182,7 +182,6 @@
 
 .back.flip {
   transform: rotateX(0deg);
-  transform: translateY(calc(0 - var(--box-width)));
 }
 
 .green {
