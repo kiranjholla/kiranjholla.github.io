@@ -140,6 +140,9 @@ function markCharPositions(word) {
   if (correctChars < 5) {
     activeRow++;
     activeColumn = 1;
+    if (activeRow > 6) {
+      promiseChain.then(() => showMessage('Better luck next time!'));
+    }
   } else {
     activeRow = 7;
     for (let i = 1; i < 6; i++) {
