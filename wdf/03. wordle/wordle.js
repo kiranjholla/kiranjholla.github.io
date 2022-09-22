@@ -132,7 +132,7 @@ function markCharPositions(word) {
           document.getElementById(`r${row}c${i}-front`).classList.add('flip');
           document.getElementById(`r${row}c${i}-back`).classList.add('flip');
           document.getElementById(`r${row}c${i}-back`).classList.add(positionLabels[i - 1]);
-          setTimeout(() => resolve(row), 500);
+          setTimeout(() => resolve(row), 450);
         })
     );
   }
