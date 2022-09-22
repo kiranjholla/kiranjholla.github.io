@@ -198,3 +198,29 @@
   background-color: #787c7e;
   border-color: #787c7e;
 }
+
+.victory-dance {
+  animation: victory-dance 1000ms ease-in-out 0ms 1;
+}
+
+@keyframes victory-dance {
+  0%,
+  20% {
+    transform: translateY(0rem);
+  }
+  40% {
+    transform: translateY(-1.875rem);
+  }
+  50% {
+    transform: translateY(0.3125rem);
+  }
+  60% {
+    transform: translateY(-0.9375rem);
+  }
+  80% {
+    transform: translateY(0.125rem);
+  }
+  100% {
+    transform: translateY(0rem);
+  }
+}

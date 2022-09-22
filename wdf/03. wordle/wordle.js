@@ -104,12 +104,14 @@ function showMessage(message) {
 function markCharPositions(word) {
   const counts = { ...charCounts };
   const positionLabels = Array(5).fill('grey');
+  let correctChars = 0;
 
   for (let i = 0; i < 5; i++) {
     // console.log(targetWord[i], word[i], i);
     if (targetWord[i] === word[i]) {
       positionLabels[i] = 'green';
       counts[word[i]]--;
+      correctChars++;
     }
   }
 
@@ -134,8 +136,23 @@ function markCharPositions(word) {
         })
     );
   }
-  activeRow++;
-  activeColumn = 1;
+
+  if (correctChars < 5) {
+    activeRow++;
+    activeColumn = 1;
+  } else {
+    activeRow = 7;
+    for (let i = 1; i < 6; i++) {
+      promiseChain = promiseChain.then(
+        row =>
+          new Promise(resolve => {
+            document.getElementById(`r${row}c${i}`).classList.add('victory-dance');
+            setTimeout(() => resolve(row), 100);
+          })
+      );
+    }
+    promiseChain.then(() => showMessage('Congratulations!'));
+  }
 }
 
 /**
