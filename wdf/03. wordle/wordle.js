@@ -1,10 +1,49 @@
 let activeRow = 1;
 let activeColumn = 1;
+let targetWord;
+let charCounts;
 
 const allowedKeys = ['Backspace', 'Enter'];
-
 const messageEl = document.getElementById('message-content');
 const spinnerEl = document.getElementById('spinner');
+
+/**
+ * initialize() : Function retrieves the word of the day from the server
+ * and sets up the game
+ */
+function initialize() {
+  activeRow = 1;
+  activeColumn = 1;
+
+  startSpinner();
+  fetch('https://words.dev-apis.com/word-of-the-day')
+    .then(response => response.json())
+    .then(({ word }) => {
+      targetWord = word;
+      charCounts = countCharacters(targetWord);
+      document.addEventListener('keyup', handleKeyup);
+      stopSpinner();
+    });
+}
+
+/**
+ * countCharacters() : Count characters within a word and return a map of characters
+ * and their respective counts within that word
+ *
+ * @param {string} word
+ * @returns Object containing character counts
+ */
+function countCharacters(word) {
+  const charCount = {};
+  for (let i = 0; i < word.length; i++) {
+    if (word[i] in charCount) {
+      charCount[word[i]]++;
+    } else {
+      charCount[word[i]] = 1;
+    }
+  }
+  return charCount;
+}
 
 /**
  * handleKeyup() : Event handler for key-up event to check the character
@@ -126,3 +165,5 @@ function startSpinner() {
 function stopSpinner() {
   spinnerEl.classList.remove('spinning');
 }
+
+initialize();
