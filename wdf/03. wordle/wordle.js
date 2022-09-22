@@ -19,7 +19,7 @@ function initialize() {
   fetch('https://words.dev-apis.com/word-of-the-day')
     .then(response => response.json())
     .then(({ word }) => {
-      targetWord = word;
+      targetWord = word.toLowerCase();
       charCounts = countCharacters(targetWord);
       document.addEventListener('keyup', handleKeyup);
       stopSpinner();
@@ -101,10 +101,31 @@ function showMessage(message) {
  * animation.
  *
  */
-function markCharPositions() {
+function markCharPositions(word) {
+  const counts = { ...charCounts };
+  const positionLabels = Array(5).fill('grey');
+
+  for (let i = 0; i < 5; i++) {
+    // console.log(targetWord[i], word[i], i);
+    if (targetWord[i] === word[i]) {
+      positionLabels[i] = 'green';
+      counts[word[i]]--;
+    }
+  }
+
+  for (let i = 0; i < 5; i++) {
+    if (positionLabels[i] === 'grey') {
+      if (counts[word[i]] > 0) {
+        positionLabels[i] = 'yellow';
+        counts[word[i]]--;
+      }
+    }
+  }
+
   for (let i = 1; i < 6; i++) {
     document.getElementById(`r${activeRow}c${i}-front`).classList.add('flip');
     document.getElementById(`r${activeRow}c${i}-back`).classList.add('flip');
+    document.getElementById(`r${activeRow}c${i}-back`).classList.add(positionLabels[i - 1]);
   }
   activeRow++;
   activeColumn = 1;
@@ -140,7 +161,7 @@ function validateEnteredWord() {
     .then(value => {
       stopSpinner();
       if (value.validWord) {
-        markCharPositions();
+        markCharPositions(word.toLowerCase());
       } else {
         showMessage('Not a valid word!');
       }
