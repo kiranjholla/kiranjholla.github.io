@@ -1,5 +1,6 @@
 ---
 title: Introduction
+layout: default
 ---
 
 Welcome to My Home Page
